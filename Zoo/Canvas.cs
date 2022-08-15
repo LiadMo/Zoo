@@ -22,7 +22,14 @@ namespace Zoo
                 _instance = new Canvas(width, height);
             return _instance;
         }
-
+        
+        // call the c'tor only is the first instance
+        public static Canvas CreateCanvas(int width = 40, int height = 20)
+        {
+            if (instance == null)
+                instance = new Canvas(width, height);
+            return instance;
+        }
 
         public void DrawCanvas() {
             Console.Clear();
