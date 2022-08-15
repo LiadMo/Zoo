@@ -8,8 +8,8 @@ namespace Zoo
 {
     internal class Canvas
     {
-        private int _width { get; set; }
-        private int _height { get; set; }
+        public int _width { get; set; }
+        public int _height { get; set; }
         private static Canvas _instance = null;
 
 

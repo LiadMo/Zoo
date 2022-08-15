@@ -9,26 +9,19 @@ namespace Zoo
     {
         static void Main(string[] args)
         {
-            var e1 = new Elephant("pil");
             int milliseconds = 500;
-            List<IAnimal> animals = new List<IAnimal>();
-            animals.Add(e1);
+            var zoo = new Zoo(milliseconds);
+            var zoo2 = new Zoo(milliseconds);
 
-            Canvas frame = Canvas.CreateCanvas();
-            Console.OutputEncoding = System.Text.Encoding.UTF8;
 
-            while (frame != null)
-            {
-                frame.DrawCanvas();
-                foreach (var animal in animals)
-                {
-                    animal.Draw();
-                    animal.Walk();
-                }
+            var a1 = new Elephant("pil");
+            var a2 = new Elephant("fil");
 
-                Thread.Sleep(milliseconds);
-                //Console.Read();
-            }
+            zoo.AddAnimal("Elefent","Yosi");
+            zoo.AddAnimal(a2);
+            zoo.ClearZoo();
+
+            zoo.RunZoo();
 
         }
     }

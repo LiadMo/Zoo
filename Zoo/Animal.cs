@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 namespace Zoo
 {
     abstract class Animal : IAnimal {
-        protected Point _cord;
-        protected string _name;
+        public Point _cord { get; init; }
+        protected readonly string _name;
         protected string _species;
         protected int _steps;
         //protected double _age;
@@ -17,7 +17,6 @@ namespace Zoo
 
         public abstract void AnimalSound();
         public abstract void Draw();
-        public abstract void Walk();
-
+        public abstract void Walk(int max_x, int max_y);
     }
 }
