@@ -2,68 +2,59 @@
 using System.Collections.Generic;
 using System.Threading;
 
-namespace Zoo
-{
-    internal class Zoo
-    {
-        int _delay;
-        public List<IAnimal> _animals { get; set; }
-        Canvas canvas;
+namespace Zoo {
+    internal class Zoo {
+        #region public properties
+        private int _delay;
+        public List<IAnimal> Animals { get; init; }
+        private readonly Canvas _canvas;
+        #endregion
 
-        public Zoo(int delay, int width = 110, int height = 25)
-        {
-            if (width <= 0 || height <= 0)
-            {
+        public Zoo(int delay = 100, int width = 110, int height = 25) {
+            if (width <= 0 || height <= 0) {
                 throw new ArgumentException("Negativ|zero width OR height");
             }
 
             _delay = delay;
-            _animals = new List<IAnimal>();
-            canvas = Canvas.CreateCanvas(width, height);
+            Animals = new List<IAnimal>();
+            _canvas = Canvas.CreateCanvas(width, height);
         }
 
-        public void AddAnimal(Animal animal)
-        {
-            if (animal == null)
-            {
+        #region methods
+        /// <summary>
+        /// add an animal to the zoo
+        /// </summary>
+        /// <param name="animal"></param>
+        public void AddAnimal(Animal animal) {
+            if (animal == null) {
                 throw (new ArgumentException("Null animal argument"));
             }
             Random random = new Random();
-            int x = random.Next(0, canvas._width + 1);
-            int y = random.Next(0, canvas._height + 1);
-            animal._cord.UpdatePoint(x, y);
-            _animals.Add(animal);
+            int x = random.Next(0, _canvas.Width + 1);
+            int y = random.Next(0, _canvas.Height + 1);
+            animal.Cord.UpdatePoint(x, y);
+            Animals.Add(animal);
         }
 
-        public void RunZoo()
-        {
-            var frame = Canvas.CreateCanvas();
 
-            if (canvas == null)
-            {
-                throw (new ArgumentException("Canvas error"));
-            }
-            frame.DrawCanvas();
-
-
-            while (frame != null)
-            {
-                // frame.DrawCanvas();
-                foreach (var animal in _animals)
-                {
+        public void RunZoo() {
+            while (_canvas != null) {
+                _canvas.DrawCanvas();
+                foreach (var animal in Animals) {
                     animal.Draw();
-                    animal.Walk(canvas._width, canvas._height);
+                    animal.Walk(_canvas.Width, _canvas.Height);
                 }
                 Thread.Sleep(_delay);
             }
         }
 
-        public void ClearZoo()
-        {
-            Console.Clear();
-            canvas = null;
-            _animals.Clear();
+        /// <summary>
+        /// remove all anumals from the zoo
+        /// </summary>
+        public void ClearAnimals() {
+            Animals.Clear();
         }
+        #endregion
     }
 }
 

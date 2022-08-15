@@ -1,54 +1,46 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Zoo
-{
-    internal class Canvas
-    {
-        public int _width { get; set; }
-        public int _height { get; set; }
+namespace Zoo {
+    internal class Canvas {
+        #region properties
+        public int Width { get; set; }
+        public int Height { get; set; }
         private static Canvas _instance = null;
-
+        #endregion
 
         private Canvas(int width, int height) {
-            _width = width;
-            _height = height;
-        }
-        public static Canvas CreateCanvas(int width = 110, int height = 25) {
-            if (_instance == null)
-                _instance = new Canvas(width, height);
-            return _instance;
-        }
-        
-        // call the c'tor only is the first instance
-        public static Canvas CreateCanvas(int width = 40, int height = 20)
-        {
-            if (instance == null)
-                instance = new Canvas(width, height);
-            return instance;
+            Width = width;
+            Height = height;
         }
 
+        public static Canvas CreateCanvas(int width = 110, int height = 25) {
+            if (_instance == null) {
+                _instance = new Canvas(width, height);
+            }
+            return _instance;
+        }
+
+        /// <summary>
+        /// print the frame
+        /// </summary>
         public void DrawCanvas() {
             Console.Clear();
-            for (int i = 0; i < _width; i++) {
+            for (int i = 0; i < Width; i++) {
                 Console.SetCursorPosition(i, 0);
                 Console.Write('-');
             }
-            for (int i = 0; i < _width; i++) {
-                Console.SetCursorPosition(i, _height);
+            for (int i = 0; i < Width; i++) {
+                Console.SetCursorPosition(i, Height);
                 Console.Write('-');
             }
-            for (int i = 0; i < _height; i++) {
-                Console.SetCursorPosition(0,i);
+            for (int i = 0; i < Height; i++) {
+                Console.SetCursorPosition(0, i);
                 Console.Write('-');
             }
-            for (int i = 0; i < _height; i++) {
-                Console.SetCursorPosition(_width, i);
+            for (int i = 0; i < Height; i++) {
+                Console.SetCursorPosition(Width, i);
                 Console.Write('-');
             }
-        } // print the frame
+        }
     }
 }
