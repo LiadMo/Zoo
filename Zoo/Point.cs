@@ -45,6 +45,10 @@
         public bool IsValidPoint(int width, int height) {
             return this.X <= width && this.X >= 0 && this.Y <= height && this.Y >= 0;
         }
+
+        public override string ToString() {
+            return (X.ToString() + "," + Y.ToString());
+        }
         #endregion
     }
 }

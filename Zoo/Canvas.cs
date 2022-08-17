@@ -8,17 +8,21 @@ namespace Zoo {
         private static Canvas _instance = null;
         #endregion
 
+        #region c'tors
         private Canvas(int width, int height) {
             Width = width;
             Height = height;
+            Console.CursorVisible = true;
         }
 
         public static Canvas CreateCanvas(int width = 110, int height = 25) {
             if (_instance == null) {
                 _instance = new Canvas(width, height);
             }
+            Console.CursorVisible = true;
             return _instance;
         }
+        #endregion
 
         /// <summary>
         /// print the frame

@@ -4,20 +4,18 @@ namespace Zoo {
     class AnimalFactory {
         public static Animal MakeAnimal(string animalType, string animalName) {
 
-            if (animalType == "Elephant") {
+            if (animalType == "elephant") {
                 return new Elephant(animalName);
             }
 
-            if (animalType == "Lion") {
+            if (animalType == "lion") {
                 return new Lion(animalName);
             }
 
-
             // add here more animals
 
-
             else {
-                throw (new ArgumentException("No such animal type"));
+                throw (new NotSupportedException($"No such animal {animalType}"));
             }
 
         }

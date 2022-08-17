@@ -1,12 +1,11 @@
 ﻿namespace Zoo {
-    internal class Elephant : Animal {
+    class Elephant : Animal {
         public Elephant(string name) {
             Name = name;
-            Species = "Elephant";
+            Species = GetType().Name;
             AnimalChar = Species[0];
             Cord = new Point(0, 0);
             Steps = 2;
-
         }
 
         public override string AnimalSound() {
