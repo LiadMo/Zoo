@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 namespace Zoo {
     abstract class Animal : IAnimal {
         #region public properties
@@ -7,7 +8,8 @@ namespace Zoo {
         public string Species { get; init; }
         public char AnimalChar { get; init; }
         public int Steps { get; init; }
-        //protected int _happines;
+        public Timer Time { get; init; }
+        public int Happines { get; set; }
         #endregion
 
 
@@ -24,7 +26,7 @@ namespace Zoo {
         /// </summary>
         /// <param name="max_x">the width of the frame</param>
         /// <param name="max_y">the height of the frame</param>
-        public void Walk(int max_x, int max_y) {
+        public virtual void Walk(int max_x, int max_y) {
             var random = new Random();
 
             int x_to_add = random.Next(-Steps, Steps + 1);
@@ -33,6 +35,10 @@ namespace Zoo {
             if (!Cord.IsValidPoint(max_x, max_y)) {
                 Cord.UpdatePoint(-x_to_add, -y_to_add);
             }
+        }
+
+        protected void Sad() {
+            Happines -= 1;
         }
 
         /// <summary>
